@@ -1,0 +1,6 @@
+- id: herby
+  name: Herby
+  description: OpenAI GPT-4o-mini
+- id: poppy
+  name: Poppy
+  description: OpenAI GPT-5

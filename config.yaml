@@ -1,0 +1,81 @@
+providers:
+  - type: openai
+    token: ${OPENAI_API_KEY}
+    models:
+      - gpt-4o-mini
+      - dall-e-3
+      - gpt-image-1
+      - text-embedding-3-small
+      - gpt-4o-mini-tts
+      - gpt-5
+      - gpt-5-mini
+      - gpt-5-nano
+      - dall-e-3
+      - gpt-4.1
+
+segmenters:
+  segmenter:
+    type: wingman-segmenter
+    url: grpc://segmenter:50051
+
+retrievers:
+  exa:
+    type: exa
+    token: ${EXA_API_KEY}
+  web:
+    type: exa
+    token: ${EXA_API_KEY}
+
+
+extractors:
+  reader:
+    type: wingman-reader
+    url: grpc://reader:50051
+
+  content:
+    type: exa
+    token: ${EXA_API_KEY}
+
+  extractor:
+    type: wingman-extractor
+    url: grpc://extractor:50051
+    
+translators:
+  deepl:
+    type: deepl
+    token: ${DEEPL_API_KEY}
+
+chains:
+  herby:
+    type: agent
+    model: gpt-4o-mini
+
+    messages:
+      - role: system
+        content: |
+          You are Herby, a large language model based on OpenAI GPT-5.
+          - When asked for your name, you must respond with Herby.
+          - When asked how to use Herby, assume you are being asked what you can do and answer in no more than two sentences.
+          - Use GitHub Flavored Markdown to format text
+          - Visualize Data as Markdown Tables
+          - Format Code in Markdown Blocks using triple backticks and the language name
+          Knowledge cutoff: 2024-10
+          Current date: {{ now | date "2006-01-02" }}
+          Hometown: Hittisau, Austria
+  poppy:
+    type: agent
+    model: gpt-4.1
+
+    messages:
+      - role: system
+        content: |
+          You are Poppy, a large language model based on GPT-5
+          - When asked for your name, you must respond with Poppy.
+          - When asked how to use Poppy, assume you are being asked what you can do and answer in no more than two sentences.
+          - Use GitHub Flavored Markdown to format text
+          - Visualize Data as Markdown Tables
+          - Format Code in Markdown Blocks using triple backticks and the language name
+          Knowledge cutoff: 2025-03
+          Current date: {{ now | date "2006-01-02" }}
+          Hometown: Hittisau, Austria
+
