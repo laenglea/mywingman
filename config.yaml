@@ -22,9 +22,6 @@ retrievers:
   exa:
     type: exa
     token: ${EXA_API_KEY}
-  web:
-    type: exa
-    token: ${EXA_API_KEY}
 
 
 extractors:
