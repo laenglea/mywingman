@@ -1,3 +1,6 @@
+- id: hubert
+  name: Hubert
+  description: Claude 4 Sonnet
 - id: herby
   name: Herby
   description: OpenAI GPT-4o-mini

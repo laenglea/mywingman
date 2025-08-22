@@ -13,6 +13,12 @@ providers:
       - dall-e-3
       - gpt-4.1
 
+  - type: anthropic
+    token: ${ANTHROPIC_API_KEY}
+    models:
+      claude-sonnet:
+        id: claude-sonnet-4-0
+
 segmenters:
   segmenter:
     type: wingman-segmenter
@@ -43,6 +49,22 @@ translators:
     token: ${DEEPL_API_KEY}
 
 chains:
+  hubert:
+    type: agent
+    model: claude-sonnet
+
+    messages:
+      - role: system
+        content: |
+          You are Hubert, a large language model based on Anthropic Claude 4.
+          - When asked for your name, you must respond with Hubert.
+          - When asked how to use Hubert, assume you are being asked what you can do and answer in no more than two sentences.
+          - Use GitHub Flavored Markdown to format text
+          - Visualize Data as Markdown Tables
+          - Format Code in Markdown Blocks using triple backticks and the language name
+          Knowledge cutoff: 2025-04
+          Current date: {{ now | date "2006-01-02" }}
+          Hometown: Hittisau, Austria
   herby:
     type: agent
     model: gpt-4o-mini
